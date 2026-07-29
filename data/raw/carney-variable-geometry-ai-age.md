@@ -1,0 +1,30 @@
+---
+title: "Carney's Variable Geometry Needs Constraints in the AI Age"
+url: https://www.cigionline.org/articles/carneys-variable-geometry-needs-constraints-in-the-ai-age/
+date: 2026-05-07
+authors: [Mark Daley]
+type: Opinion
+topics: [Artificial Intelligence]
+---
+
+## Munich describes the disorder. Carney offers an approach. Instead of treating AI as a disembodied miracle, Canada must treat it as critical infrastructure.
+
+Munich describes the disorder. Carney offers an approach. Instead of treating AI as a disembodied miracle, Canada must treat it as critical infrastructure.
+
+There is a point in winter when the air stops feeling brisk and starts feeling diagnostic. February’s Munich Security Conference had that quality. The report shaping the discussion, released just before the event, argues that the post-1945 order is not merely fraying but “under destruction.” Prime Minister Mark Carney, at Davos, offered Canada’s answer to this “rupture” in the language of “variable geometry”: form different coalitions for different issues, calibrated to values and interests. The Munich Security Report 2026 and Carney’s speech can be read as companion texts: one names the atmosphere; the other proposes a method of breathing inside it.
+
+But where these diagnoses may best be applied is not to diplomatic theory but to artificial intelligence (AI). Civil society often still talks about AI as though it were a disembodied miracle: weights, benchmarks, synthetic eloquence and a bit of Silicon Valley incense. That is, however, a category error. Contemporary AI is a stack : power, land, cooling, chips, networks, systems software, models and deployment. The International Energy Agency now expects global data-centre electricity use to more than double from roughly 415 Terawatt-hours (TWh) in 2024 to around 945 TWh by 2030, with AI as the primary accelerant. This is not merely software: it is infrastructure, with a power bill.
+
+If one looks at AI that way, Carney’s language becomes precise. You do not solve semiconductor dependence with the same coalition you use for model safety. You do not secure grid resilience with the same instrument you use for cloud procurement or incident reporting. Different layers, different chokepoints, different partners. The “stack nature” of AI forces pluralism. Carney explicitly ties variable geometry to critical minerals and AI, and warns against a future in which countries are forced to choose between “hegemons and hyperscalers.” On that point, he is plainly right.
+
+The Munich report, however, supplies the uncomfortable correction. Its argument is not just that geopolitics has become messy; it is that destruction itself is becoming a political program, fuelled by disenchantment with democratic institutions and a loss of trust that reform can still work. For AI policy, that matters enormously, because AI governance is institution-hungry. It depends on procurement discipline, regulatory capacity, public trust and alliances that last longer than a news cycle. In a low-trust environment, technocratic elegance on its own is a paper shield.
+
+In that sense, we must stop thinking of AI within a narrow “innovation” file; that framing misses both the physics and the politics. If AI rests on data centres, transformers, export controls, cross-border supply chains and cyber resilience, then it belongs as much to infrastructure strategy and national security as to industrial policy. The old habit of separating the “digital” from the “real” was always a polite fiction; AI has simply made the fiction expensive.
+
+The Canadian temptation, of course, is to reach for boosterism. We have energy, minerals, talent, pension capital and political stability; Carney says as much, and not unfairly. But comparative advantage is not the same thing as strategic coherence. No serious person should imagine Canada is about to dominate every layer of the AI stack by sheer patriotic enthusiasm and a stern memo. Our strength lies elsewhere: in reliable power, trusted sites, coalition design and governance that can survive pressure. In other words, in the preservation of optionality instead of in a fantasy autarky.
+
+That last point matters because variable geometry has a shadow. Flexibility can become drift; coalition building can become transactionism with better branding. This year’s Munich Security Conference warned of a world sliding toward deals over principles, and private interests over public ones. In AI, that is precisely how governance gets captured: opaque subsidies, cloud dependence masquerading as sovereignty, and standards shaped by whoever owns the compute. Variable geometry without constraints is not strategy, just improvisation in a nice suit.
+
+So, what might those constraints look like? Certainly not like a grand civilizational manifesto; the universe has enough of those already. It should be something much more pedestrian , namely, rule-of-law baselines that travel across coalitions, procurement integrity, transparent subsidy logic, security standards for critical infrastructure, competition scrutiny in cases where hyperscale dependency becomes quasi-sovereign power, and an insistence that public legitimacy is a design constraint rather than a communications afterthought.
+
+Carney’s variable geometry is persuasive not just because it is elegant, but because it is humble. It assumes the old order will not return on demand. It assumes middle powers must build with the materials actually at hand. This year’s Munich Security Report adds the missing warning: a world of fluid coalitions can very easily become a world of thin legitimacy; low trust and the fragmentation of our institutions will make the road for these coalitions, founded in verifiability and enforcement, that much harder. That is why Canada’s approach to AI must be built stack-first and governed with appropriate constraints. Less on vibes and more on torque specs. The future of AI will be decided not only in labs, but in interconnection queues, export-control desks and procurement files. In other words, the unromantic plumbing of sovereignty.
