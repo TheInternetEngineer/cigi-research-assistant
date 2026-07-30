@@ -89,8 +89,12 @@ export type BriefingResult = {
 };
 
 async function researchSubQuestion(subQuestion: string): Promise<BriefingSection> {
+  // Embed once and reuse — the widened retry re-scores the same embedding
+  // against a larger k, it doesn't need a fresh embedding call.
+  const queryEmbedding = await embedQuery(subQuestion);
+
   let k = 6;
-  let retrieved = retrieve(await embedQuery(subQuestion), k, subQuestion);
+  let retrieved = retrieve(queryEmbedding, k, subQuestion);
   let sources = buildSourceList(retrieved);
 
   const sufficiencyCheck = await complete(
@@ -103,7 +107,7 @@ async function researchSubQuestion(subQuestion: string): Promise<BriefingSection
   if (!sufficiencyCheck.toUpperCase().includes("SUFFICIENT") || sufficiencyCheck.toUpperCase().includes("INSUFFICIENT")) {
     // widen the search once before giving up
     k = 12;
-    retrieved = retrieve(await embedQuery(subQuestion), k, subQuestion);
+    retrieved = retrieve(queryEmbedding, k, subQuestion);
     sources = buildSourceList(retrieved);
     coverage = "widened";
 
@@ -143,10 +147,16 @@ export async function runBriefing(topic: string): Promise<BriefingResult> {
   const planRaw = await complete(PLAN_SYSTEM_PROMPT, `TOPIC: ${topic}`, 300);
   const subQuestions = parsePlan(planRaw).slice(0, 5);
 
-  const sections: BriefingSection[] = [];
-  for (const sq of subQuestions) {
-    sections.push(await researchSubQuestion(sq));
-  }
+  // Sub-questions are independent of each other — researching them in
+  // parallel instead of one at a time is what actually keeps this under a
+  // serverless function's time limit. Sequentially, 5 sub-questions at up to
+  // 4 model/embedding calls each stacks into 15-20+ calls end to end, which
+  // is exactly what was timing out in production. In parallel, wall-clock
+  // time is roughly bounded by the slowest single sub-question, not the sum
+  // of all of them.
+  const sections: BriefingSection[] = await Promise.all(
+    subQuestions.map((sq) => researchSubQuestion(sq))
+  );
 
   const sectionSummary = sections
     .map((s, i) => `${i + 1}. ${s.subQuestion}`)

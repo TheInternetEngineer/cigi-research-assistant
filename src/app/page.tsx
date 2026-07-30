@@ -229,6 +229,28 @@ export default function Home() {
     }
   }
 
+  // Reads a fetch response as JSON, but doesn't assume it succeeded in
+  // returning JSON at all. A serverless function that times out or crashes
+  // at the platform level (not inside our own try/catch) returns an HTML or
+  // plain-text error page instead — calling res.json() on that throws a
+  // confusing "Unexpected token... is not valid JSON" instead of a real
+  // error message. This surfaces a clear message for that case instead.
+  async function parseJsonResponse(res: Response): Promise<Record<string, unknown>> {
+    const contentType = res.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      const text = (await res.text()).slice(0, 200);
+      if (res.status === 504 || /timed?\s*out/i.test(text)) {
+        throw new Error(
+          "That request took too long and timed out — briefing mode runs several AI calls in sequence, so a broad topic can occasionally hit the time limit. Try a narrower topic, or try again."
+        );
+      }
+      throw new Error(
+        `The server returned an unexpected response (status ${res.status}) instead of a result. Please try again.`
+      );
+    }
+    return res.json();
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!input.trim() || loading) return;
@@ -243,18 +265,18 @@ export default function Home() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ question: input.trim() }),
         });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Something went wrong.");
-        setAskResult(data);
+        const data = await parseJsonResponse(res);
+        if (!res.ok) throw new Error((data.error as string) || "Something went wrong.");
+        setAskResult(data as unknown as AskResult);
       } else {
         const res = await fetch("/api/briefing", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ topic: input.trim() }),
         });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Something went wrong.");
-        setBriefingResult(data);
+        const data = await parseJsonResponse(res);
+        if (!res.ok) throw new Error((data.error as string) || "Something went wrong.");
+        setBriefingResult(data as unknown as BriefingResult);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
